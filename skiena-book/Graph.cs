@@ -5,14 +5,11 @@
     {
         public int y;
         public int weight;
-        public EdgeNode[] next => _next.ToArray();
-        List<EdgeNode> _next;
 
-        public EdgeNode(int v, List<EdgeNode> edge, int edgeWeigth = 6)
+        public EdgeNode(int v, int edgeWeigth = 6)
         {
             this.y = v;
             this.weight = edgeWeigth;
-            this._next = edge;
         }
 
     }
@@ -44,18 +41,13 @@
                 InsertEdge(vtx[0], vtx[1], directed);
             }
 
-            //for(int i= 1; i<= n; i++)
-            //{
-            //    _distance[i] = -1;
-            //}
-
         }
 
         private void InsertEdge(int x, int y, bool directed)
         {
             List<EdgeNode> edges = _edges[x] ?? new List<EdgeNode>();
 
-            EdgeNode node = new(y, edges);
+            EdgeNode node = new(y);
 
             if (edges.Count == 0)
             {
@@ -170,7 +162,7 @@
         private void ProcessVertexLate(int v)
         {
             //throw new NotImplementedException();
-            Console.WriteLine("processed vertex: {0}",v);
+            Console.WriteLine("processed vertex: {0}", v);
         }
 
         public void ProcessEdge(int x, int y)
