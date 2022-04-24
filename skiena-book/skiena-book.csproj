@@ -8,4 +8,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Ksu.Cis300.Graphs" />
+  </ItemGroup>
 </Project>
