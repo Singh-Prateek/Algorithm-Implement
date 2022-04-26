@@ -6,7 +6,7 @@
         public int y;
         public int weight;
 
-        public EdgeNode(int v, int edgeWeigth = 6)
+        public EdgeNode(int v, int edgeWeigth)
         {
             this.y = v;
             this.weight = edgeWeigth;
@@ -47,7 +47,7 @@
         {
             List<EdgeNode> edges = _edges[x] ?? new List<EdgeNode>();
 
-            EdgeNode node = new(y);
+            EdgeNode node = new(y, 6);
 
             if (edges.Count == 0)
             {
@@ -99,22 +99,29 @@
 
     public class BreathFirstSearch
     {
-        public void Bfs(int n, Graph g, int s)
+        int[] parent = new int[0];
+
+        public int[] Parents => this.parent;
+
+        public void Bfs(Graph g, int s)
         {
+            int n = g.nVertices;
+
             bool[] processed = new bool[n + 1];
             bool[] discovered = new bool[n + 1];
-            int[] parent = new int[n + 1];
             Array.Fill(parent, -1);
             //int[] distanceFromStart = new int[n + 1];
-
+            parent = new int[n + 1];
             var q = new Queue<int>();
             q.Enqueue(s);
+            discovered[s] = true;
             //distanceFromStart[s] = 0;
 
             while (q.Count != 0)
             {
                 var v = q.Dequeue();
-                processed[v] = true;
+
+                ProcessVertexEarly(v);
 
                 var p = g.edges[v];
 
@@ -131,9 +138,9 @@
 
                         if (!discovered[y])
                         {
-                            q.Enqueue(y);
                             discovered[y] = true;
                             parent[y] = v;
+                            q.Enqueue(y);
                             //if (y != s)
                             //{
                             //    distanceFromStart[y] = nxt.weight + distanceFromStart[v];
@@ -141,35 +148,62 @@
                         }
                     }
 
+                    processed[v] = true;
                     ProcessVertexLate(v);
                 }
 
             }
 
-            //string result = string.Empty;
+            Logging(parent);
 
-            //for (int i = 1; i <= n; i++)
-            //{
-            //    if (i == s) continue;
+        }
 
-            //    result += " " + distanceFromStart[i];
-            //}
-
-            //Console.WriteLine(result.TrimStart());
-
+        private void Logging(int[] parent)
+        {
+            Console.WriteLine("vertex\t\t {0}", string.Join("\t", parent.Select((e, i) => i.ToString()).Skip(1)));
+            Console.WriteLine("parent\t\t {0}", string.Join("\t", parent.Skip(1)));
         }
 
         private void ProcessVertexLate(int v)
         {
-            //throw new NotImplementedException();
             Console.WriteLine("processed vertex: {0}", v);
         }
+
+        private void ProcessVertexEarly(int v)
+        {
+            Console.WriteLine("start processing vertex: {0}", v);
+        }
+
 
         public void ProcessEdge(int x, int y)
         {
             Console.WriteLine($"process edge {x},{y}");
         }
 
+        public void FindPath(int start, int end, int[] parent)
+        {
+            if(start == end || end == -1)
+            {
+                Console.Write("\n{0}",start);
+            }
+            else
+            {
+                FindPath(start, parent[end], parent);
+                Console.Write(" {0}",end);
+            }
+        }
+
+
+
+    }
+
+    public class DepthFirstSearch
+    {
+
+        public void Dfs(int n, Graph g, int s)
+        {
+
+        }
     }
 
 }
