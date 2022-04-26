@@ -100,12 +100,12 @@
     public class BreathFirstSearch
     {
         int[] parent = new int[0];
-
-        public int[] Parents => this.parent;
+        int start = 0;
 
         public void Bfs(Graph g, int s)
         {
             int n = g.nVertices;
+            start = s;
 
             bool[] processed = new bool[n + 1];
             bool[] discovered = new bool[n + 1];
@@ -180,16 +180,16 @@
             Console.WriteLine($"process edge {x},{y}");
         }
 
-        public void FindPath(int start, int end, int[] parent)
+        public void FindPath(int end)
         {
-            if(start == end || end == -1)
+            if (start == end || end == -1)
             {
-                Console.Write("\n{0}",start);
+                Console.Write("\n{0}", start);
             }
             else
             {
-                FindPath(start, parent[end], parent);
-                Console.Write(" {0}",end);
+                FindPath(parent[end]);
+                Console.Write(" {0}", end);
             }
         }
 

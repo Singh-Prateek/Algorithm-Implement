@@ -41,10 +41,11 @@ var edges = new List<List<int>>() {
 Graph g = new(8, edges, false);
 g.Print();
 
+int start = 1;
 BreathFirstSearch ga = new();
 
-ga.Bfs(g, 1);
+ga.Bfs(g, start);
 
-ga.FindPath(1, 6, ga.Parents);
+ga.FindPath(6);
 
-ga.FindPath(1, 4, ga.Parents);
+ga.FindPath(4);
