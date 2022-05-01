@@ -229,6 +229,7 @@
             log("parent", this.parent);
             log("timein", this.entryTime);
             log("timeout", this.exitTime);
+            log("chils", this.entryTime.Zip(this.exitTime).Select(e=> (e.Second - e.First)/2));
 
             void log(string message, IEnumerable<int> args)
             {
@@ -269,8 +270,8 @@
 
             //ProcessVertexLate(v);
             processed[v] = true;
-            time++;
             exitTime[v] = time;
+            time++;
 
         }
 
