@@ -44,8 +44,11 @@ g.Print();
 int start = 1;
 BreathFirstSearch ga = new();
 
-ga.Bfs(g, start);
+//ga.Bfs(g, start);
 
-ga.FindPath(6);
+//ga.FindPath(6);
 
-ga.FindPath(4);
+//ga.FindPath(4);
+
+DepthFirstSearch df = new();
+df.Dfs(g, start);

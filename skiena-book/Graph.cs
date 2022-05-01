@@ -199,10 +199,106 @@
 
     public class DepthFirstSearch
     {
+        private bool[] discovered = Array.Empty<bool>();
+        private bool[] processed = Array.Empty<bool>();
+        private int[] parent = Array.Empty<int>();
+        private int[] entryTime = Array.Empty<int>();
+        private int[] exitTime = Array.Empty<int>();
 
-        public void Dfs(int n, Graph g, int s)
+        int time = 0;
+
+        private void Initialize(int n)
         {
+            discovered = new bool[n + 1];
+            processed = new bool[n + 1];
+            parent = new int[n + 1];
+            entryTime = new int[n + 1];
+            exitTime = new int[n + 1];
+            Array.Fill(parent, -1);
+            time = 0;
 
+        }
+
+        public void Dfs(Graph g, int s)
+        {
+            Initialize(g.nVertices);
+
+            DfsRec(g, s);
+
+            log("items", this.parent.Select((s, idx) => idx));
+            log("parent", this.parent);
+            log("timein", this.entryTime);
+            log("timeout", this.exitTime);
+
+            void log(string message, IEnumerable<int> args)
+            {
+                Console.WriteLine("{0}\t\t{1}", message, string.Join("\t", args.Skip(1)));
+            }
+        }
+
+
+
+        private void DfsRec(Graph g, int v)
+        {
+            discovered[v] = true;
+            time++;
+            entryTime[v] = time;
+            ProcessVertexEarly(v);
+
+            var edges = g.edges[v];
+
+            if (edges != null)
+            {
+                //edges.Sort((x, y) => x.y < y.y ? -1 : 1);
+
+                foreach (var edge in edges)
+                {
+                    int y = edge.y;
+                    if (!discovered[y])
+                    {
+                        this.parent[y] = v;
+                        ProcessEdge(v, y);
+                        DfsRec(g, y);
+                    }
+                    else if (discovered[y] && parent[v] != y)
+                    {
+                        ProcessEdge(v, y);
+                    }
+                }
+            }
+
+            //ProcessVertexLate(v);
+            processed[v] = true;
+            time++;
+            exitTime[v] = time;
+
+        }
+
+        private void ProcessVertexEarly(int v)
+        {
+            Console.WriteLine("\tearly vertex: {0}", v);
+        }
+
+        private void ProcessVertexLate(int v)
+        {
+            Console.WriteLine("\t\t\tlate vertex: {0}", v);
+
+        }
+
+        private void ProcessEdge(int v, int y)
+        {
+            //Console.WriteLine("\tedge: {0},{1}", v, y);
+
+            if (parent[y] == v)
+            {
+                //if(parent[v])
+                Console.WriteLine("\t\tgraph edge {0},{1}", v, y);
+            }
+
+            if (!processed[y] && discovered[y])
+            {
+                Console.WriteLine("\t\tback edge {0},{1}", v, y);
+            }
         }
     }
 
