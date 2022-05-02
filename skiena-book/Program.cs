@@ -35,6 +35,7 @@ var edges = new List<List<int>>() {
     new List<int>() { 2, 7 },
     new List<int>() { 3, 4 },
     new List<int>() { 3, 5 },
+    new List<int>() { 4, 5 },
     new List<int>() { 5, 6 },
 };
 
