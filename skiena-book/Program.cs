@@ -14,6 +14,7 @@
 using skiena_book;
 
 
+
 //var edges = new List<List<int>>() { new List<int>() { 1, 2 }, new List<int>() { 1, 3 }, new List<int>() { 3, 4 }, new List<int>() { 3, 4 } };
 
 //var edges1 = new List<List<int>>() {
@@ -45,7 +46,7 @@ g.Print();
 int start = 1;
 BreathFirstSearch ga = new();
 
-//ga.Bfs(g, start);
+ga.Bfs(g, start);
 
 //ga.FindPath(6);
 

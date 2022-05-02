@@ -23,8 +23,8 @@
         public int nVertices;
         public bool directed;
         //public int[] distance => _distance;
-        public List<EdgeNode>[] edges => _edges;
-        public int[] degree => _degree;
+        public List<EdgeNode>[] Edges => _edges;
+        public int[] Degree => _degree;
 
 
         public Graph(int n, List<List<int>> edges, bool directed)
@@ -91,7 +91,7 @@
                     }
                 }
 
-                Console.WriteLine("");
+                Console.WriteLine(string.Empty);
             }
         }
 
@@ -123,7 +123,7 @@
 
                 ProcessVertexEarly(v);
 
-                var p = g.edges[v];
+                var p = g.Edges[v];
 
                 if (p != null)
                 {
@@ -158,27 +158,33 @@
 
         }
 
-        private void Logging(int[] parent)
+        private static void Logging(int[] parent)
         {
-            Console.WriteLine("vertex\t\t {0}", string.Join("\t", parent.Select((e, i) => i.ToString()).Skip(1)));
-            Console.WriteLine("parent\t\t {0}", string.Join("\t", parent.Skip(1)));
+            log("vertex", parent.Select((e, i) => i));
+            log("parent", parent);
+
+            static void log(string message, IEnumerable<int> args)
+            {
+                Console.WriteLine("{0}\t\t{1}", message, string.Join("\t", args.Skip(1)));
+            }
         }
 
-        private void ProcessVertexLate(int v)
+        private static void ProcessVertexLate(int v)
         {
-            Console.WriteLine("processed vertex: {0}", v);
+            Console.WriteLine("late processed vertex: {0}", v);
         }
 
-        private void ProcessVertexEarly(int v)
+        private static void ProcessVertexEarly(int v)
         {
-            Console.WriteLine("start processing vertex: {0}", v);
+            Console.WriteLine("early processing vertex: {0}", v);
         }
 
 
         public void ProcessEdge(int x, int y)
         {
-            Console.WriteLine($"process edge {x},{y}");
+            Console.WriteLine($"\t\tprocess edge {x},{y}");
         }
+
 
         public void FindPath(int end)
         {
@@ -229,9 +235,9 @@
             log("parent", this.parent);
             log("timein", this.entryTime);
             log("timeout", this.exitTime);
-            log("chils", this.entryTime.Zip(this.exitTime).Select(e=> (e.Second - e.First)/2));
+            log("chils", this.entryTime.Zip(this.exitTime).Select(e => (e.Second - e.First) / 2));
 
-            void log(string message, IEnumerable<int> args)
+            static void log(string message, IEnumerable<int> args)
             {
                 Console.WriteLine("{0}\t\t{1}", message, string.Join("\t", args.Skip(1)));
             }
@@ -246,7 +252,7 @@
             entryTime[v] = time;
             ProcessVertexEarly(v);
 
-            var edges = g.edges[v];
+            var edges = g.Edges[v];
 
             if (edges != null)
             {
@@ -275,12 +281,12 @@
 
         }
 
-        private void ProcessVertexEarly(int v)
+        private static void ProcessVertexEarly(int v)
         {
             Console.WriteLine("\tearly vertex: {0}", v);
         }
 
-        private void ProcessVertexLate(int v)
+        private static void ProcessVertexLate(int v)
         {
             Console.WriteLine("\t\t\tlate vertex: {0}", v);
 
