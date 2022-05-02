@@ -44,13 +44,29 @@ Graph g = new(8, edges, false);
 g.Print();
 
 int start = 1;
-BreathFirstSearch ga = new();
+//BreathFirstSearch ga = new();
 
-ga.Bfs(g, start);
+//ga.Bfs(g, start);
 
 //ga.FindPath(6);
 
 //ga.FindPath(4);
 
+var crossEdge = new List<List<int>>() {
+    new List<int>() { 1, 5 },
+    new List<int>() { 1, 2 },
+    new List<int>() { 2, 3 },
+    new List<int>() { 2, 4 },
+    //new List<int>() { 4, 5 },
+    new List<int>() { 5, 2 },
+};
+
+//Console.WriteLine("another graph");
+Graph cg = new(5, crossEdge, true);
+cg.Print();
+
 DepthFirstSearch df = new();
+
 df.Dfs(g, start);
+
+df.Dfs(cg, start);

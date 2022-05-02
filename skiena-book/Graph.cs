@@ -235,7 +235,7 @@
             log("parent", this.parent);
             log("timein", this.entryTime);
             log("timeout", this.exitTime);
-            log("chils", this.entryTime.Zip(this.exitTime).Select(e => (e.Second - e.First) / 2));
+            log("childs", this.entryTime.Zip(this.exitTime).Select(e => (e.Second - e.First) / 2));
 
             static void log(string message, IEnumerable<int> args)
             {
@@ -267,7 +267,7 @@
                         ProcessEdge(v, y);
                         DfsRec(g, y);
                     }
-                    else if (discovered[y] && parent[v] != y)
+                    else if ((!processed[y] && parent[v] != y) || g.directed)
                     {
                         ProcessEdge(v, y);
                     }
@@ -306,6 +306,17 @@
             {
                 Console.WriteLine("\t\tback edge {0},{1}", v, y);
             }
+
+            if (processed[y] && entryTime[v]<entryTime[y])
+            {
+                Console.WriteLine("\t\tforward edge {0},{1}", v, y);
+            }
+
+            if (processed[y] && entryTime[v] > entryTime[y])
+            {
+                Console.WriteLine("\t\tcross edge {0},{1}", v, y);
+            }
+
         }
     }
 
