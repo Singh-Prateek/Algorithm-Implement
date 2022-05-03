@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 25.0.1700.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "skiena-book", "skiena-book.csproj", "{0584B983-F4C2-43E9-8C35-CC12CADB8CD7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "skiena.book", "skiena.book.csproj", "{0584B983-F4C2-43E9-8C35-CC12CADB8CD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgorithmsInput", "..\AlgorithmsInput\AlgorithmsInput.csproj", "{18424035-9BC8-44A2-805F-344D47F06691}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{0584B983-F4C2-43E9-8C35-CC12CADB8CD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0584B983-F4C2-43E9-8C35-CC12CADB8CD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0584B983-F4C2-43E9-8C35-CC12CADB8CD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18424035-9BC8-44A2-805F-344D47F06691}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18424035-9BC8-44A2-805F-344D47F06691}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18424035-9BC8-44A2-805F-344D47F06691}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18424035-9BC8-44A2-805F-344D47F06691}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
