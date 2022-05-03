@@ -140,5 +140,5 @@ cython_debug/
 .vscode/
 **/.DS_Store
 
-**/bin/
-**/obj/
+bin/
+obj/
