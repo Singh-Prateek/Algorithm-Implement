@@ -12,61 +12,78 @@
 //Console.WriteLine(string.Join(", ", m.Sort(src)));
 
 using skiena.book;
+using static Hackerrank.matrix.dfs.Result;
 
+List<List<int>> grid = new()
+            {
+                AddRow("1 0 1 1 0"),
+                AddRow("1 1 0 0 1"),
+                AddRow("0 1 1 1 0"),
+                AddRow("0 0 0 0 1"),
+                AddRow("1 1 1 0 0")
+            };
 
+var actual = maxRegion(grid);
 
-//var edges = new List<List<int>>() { new List<int>() { 1, 2 }, new List<int>() { 1, 3 }, new List<int>() { 3, 4 }, new List<int>() { 3, 4 } };
+Console.WriteLine(actual);
 
-//var edges1 = new List<List<int>>() {
+static List<int> AddRow(string row)
+{
+    return row.Split(" ").Select(g => int.Parse(g)).ToList();
+}
+
+////var edges = new List<List<int>>() { new List<int>() { 1, 2 }, new List<int>() { 1, 3 }, new List<int>() { 3, 4 }, new List<int>() { 3, 4 } };
+
+////var edges1 = new List<List<int>>() {
+////    new List<int>() { 1, 2 },
+////    new List<int>() { 1, 3 },
+////    new List<int>() { 3, 4 },
+////    new List<int>() { 3, 4 }
+////};
+
+////Graph g = new(10, edges1, false);
+////g.Print();
+
+//var edges = new List<List<int>>() {
 //    new List<int>() { 1, 2 },
-//    new List<int>() { 1, 3 },
+//    new List<int>() { 1, 7 },
+//    new List<int>() { 1, 8 },
+//    new List<int>() { 2, 3 },
+//    new List<int>() { 2, 5 },
+//    new List<int>() { 2, 7 },
 //    new List<int>() { 3, 4 },
-//    new List<int>() { 3, 4 }
+//    new List<int>() { 3, 5 },
+//    new List<int>() { 4, 5 },
+//    new List<int>() { 5, 6 },
 //};
 
-//Graph g = new(10, edges1, false);
+//Graph g = new(8, edges, false);
 //g.Print();
 
-var edges = new List<List<int>>() {
-    new List<int>() { 1, 2 },
-    new List<int>() { 1, 7 },
-    new List<int>() { 1, 8 },
-    new List<int>() { 2, 3 },
-    new List<int>() { 2, 5 },
-    new List<int>() { 2, 7 },
-    new List<int>() { 3, 4 },
-    new List<int>() { 3, 5 },
-    new List<int>() { 4, 5 },
-    new List<int>() { 5, 6 },
-};
+//int start = 1;
+////BreathFirstSearch ga = new();
 
-Graph g = new(8, edges, false);
-g.Print();
+////ga.Bfs(g, start);
 
-int start = 1;
-//BreathFirstSearch ga = new();
+////ga.FindPath(6);
 
-//ga.Bfs(g, start);
+////ga.FindPath(4);
 
-//ga.FindPath(6);
+//var crossEdge = new List<List<int>>() {
+//    new List<int>() { 1, 5 },
+//    new List<int>() { 1, 2 },
+//    new List<int>() { 2, 3 },
+//    new List<int>() { 2, 4 },
+//    //new List<int>() { 4, 5 },
+//    new List<int>() { 5, 2 },
+//};
 
-//ga.FindPath(4);
+////Console.WriteLine("another graph");
+//Graph cg = new(5, crossEdge, true);
+//cg.Print();
 
-var crossEdge = new List<List<int>>() {
-    new List<int>() { 1, 5 },
-    new List<int>() { 1, 2 },
-    new List<int>() { 2, 3 },
-    new List<int>() { 2, 4 },
-    //new List<int>() { 4, 5 },
-    new List<int>() { 5, 2 },
-};
+//DepthFirstSearch df = new();
 
-//Console.WriteLine("another graph");
-Graph cg = new(5, crossEdge, true);
-cg.Print();
+//df.Dfs(g, start);
 
-DepthFirstSearch df = new();
-
-df.Dfs(g, start);
-
-df.Dfs(cg, start);
+//df.Dfs(cg, start);

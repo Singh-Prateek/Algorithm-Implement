@@ -5,7 +5,7 @@ namespace AlgorithmsInput
 {
     /// <summary>
     /// find a node whch is shortest path and has same colour as start.
-    /// </summary>
+    /// </summary> 
     public class BfsShortestPairTests
     {
         [Fact]

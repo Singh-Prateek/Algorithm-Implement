@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
@@ -29,10 +28,7 @@ public class GraphBfsTests
 
     }
 
-    public static List<int> ConvertToList(string input)
-    {
-        return input.Split(" ").Select(int.Parse).ToList();
-
-    }
+    public static List<int> ConvertToList(string input) =>
+        input.Split(" ").Select(int.Parse).ToList();
 
 }
