@@ -39,10 +39,10 @@ public class Prims
 
             var edges = g.EdgeNodes[v];
 
-            foreach(var p in edges)
+            foreach (var p in edges)
             {
                 int w = p.Y;
-                
+
                 if ((distance[w] > p.Weight) && !inTree[w])
                 {
                     distance[w] = p.Weight;
@@ -50,9 +50,10 @@ public class Prims
                 }
 
             }
+
             dist = int.MaxValue;
 
-            for (int i = 1 ; i <= g.VerticesCount; i++)
+            for (int i = 1; i <= g.VerticesCount; i++)
             {
                 if (dist > distance[i] && !inTree[i])
                 {
@@ -68,13 +69,39 @@ public class Prims
 
     public void Initilize(int verticesCount)
     {
-        for(int i= 1; i <= verticesCount; i++)
+        for (int i = 1; i <= verticesCount; i++)
         {
             inTree[i] = false;
             distance[i] = int.MaxValue;
             parent[i] = -1;
         }
 
+    }
+}
+
+public class PrimsRunner
+{
+    public static int Run()
+    {
+        Graph g = GraphCommand.Create(new string[]
+            {
+                "1 3 12",
+                "3 5 7",
+                "5 6 2",
+                "6 7 5",
+                "7 2 7",
+                "2 1 5",
+                "1 4 7",
+                "4 5 3",
+                "4 7 4",
+                "5 7 2",
+                "2 4 9",
+                "4 3 4"
+            }, 7);
+
+        Prims p = new(7);
+
+        return p.PrimsAlgo(g, 7);
     }
 }
 
