@@ -6,7 +6,7 @@ using static Hackerrank.matrix.dfs.Result;
 
 namespace AlgorithmsInput
 {
-	public class MatrixDfs
+	public class MatrixDfsTests
 	{
         [Fact]
 		public void Input_0_Test()
