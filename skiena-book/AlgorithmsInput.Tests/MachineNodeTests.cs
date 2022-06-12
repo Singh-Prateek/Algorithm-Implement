@@ -1,10 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Hackerrank.machine.MST;
-using skiena.book.graph;
-using skiena.book.kruskal;
 using Xunit;
-using static Hackerrank.matrix.dfs.Result;
 
 
 namespace AlgorithmsInput
