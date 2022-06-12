@@ -33,7 +33,7 @@ public class Prims
 
             if (v != start)
             {
-                Console.WriteLine($"edge {parent[v]}-{v} in tree.");
+                //Console.WriteLine($"edge {parent[v]}-{v} in tree.");
                 weight += dist;
             }
 
