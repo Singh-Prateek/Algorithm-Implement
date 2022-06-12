@@ -2,24 +2,22 @@ using skiena.book.graph;
 
 namespace skiena.book.kruskal;
 
-public struct EdgePair
-{
-    public int X;
-    public int Y;
-    public int Weight;
-}
-
 public class Kruskals
 {
     public int AlgoRun(Graph g)
     {
-        int weight = 0;
-
-        UnionFind s = UnionFindInit(g.VerticesCount);
-
         IEnumerable<EdgePair> edges = g.EdgeNodes
                                 .SelectMany(FlatMapToEdgePair)
                                 .OrderBy(e => e.Weight);
+                                
+        return AlgoRun(edges, g.VerticesCount);
+
+    }
+
+    public int AlgoRun(IEnumerable<EdgePair> edges, int verticesCount)
+    {
+        int weight = 0;
+        UnionFind s = UnionFindInit(verticesCount);
 
         foreach (var e in edges)
         {
@@ -34,13 +32,6 @@ public class Kruskals
         return weight;
     }
 
-    private static IEnumerable<EdgePair> FlatMapToEdgePair(List<EdgeNode> s, int idx)
-    {
-        return s?.Select(e => MapToEdgePair(idx, e)) ?? new List<EdgePair>();
-    }
-
-    private static EdgePair MapToEdgePair(int idx, EdgeNode e) =>
-    new EdgePair() { X = idx, Y = e.Y, Weight = e.Weight };
 
     private UnionFind UnionFindInit(int verticesCount)
     {
@@ -89,4 +80,11 @@ public class Kruskals
     }
 
     public bool SameComponent(UnionFind s, int s1, int s2) => Find(s, s1) == Find(s, s2);
+    private static IEnumerable<EdgePair> FlatMapToEdgePair(List<EdgeNode> s, int idx)
+    {
+        return s?.Select(e => MapToEdgePair(idx, e)) ?? new List<EdgePair>();
+    }
+
+    private static EdgePair MapToEdgePair(int idx, EdgeNode e) =>
+    new EdgePair() { X = idx, Y = e.Y, Weight = e.Weight };
 }
