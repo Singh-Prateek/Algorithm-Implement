@@ -1,9 +1,9 @@
 ﻿namespace skiena.book.graph;
 
-public class EdgeNode
+public struct EdgeNode
 {
-    public int Y { get; init; }
-    public int Weight { get; init; }
+    public int Y ;
+    public int Weight ;
 }
 
 

@@ -1,10 +1,19 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using System.Collections.Generic;
+using System.Linq;
 using skiena.book.graph;
 using skiena.book.kruskal;
-using skiena.book.prim;
+using Xunit;
+using static Hackerrank.matrix.dfs.Result;
 
 
-Graph g = GraphCommand.Create(new string[]
+namespace AlgorithmsInput
+{
+    public class KruskalsTests
+    {
+        [Fact]
+        public void Input_0_Test()
+        {
+            Graph g = GraphCommand.Create(new string[]
             {
                 "1 3 12",
                 "3 5 7",
@@ -23,4 +32,11 @@ Graph g = GraphCommand.Create(new string[]
             Kruskals p = new();
 
             var actual = p.AlgoRun(g);
-            System.Console.WriteLine(actual);
+
+            Assert.Equal(23, actual);
+
+        }
+
+    }
+}
+
