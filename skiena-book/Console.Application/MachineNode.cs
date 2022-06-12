@@ -58,6 +58,7 @@ public class MachineNode
             s.hasMachineInSet[machines[i]] = true;
         }
 
+        //as we want to remove smallest edge from machine city.
         foreach (var e in roads.OrderByDescending(r => r[2]))
         {
             w += e[2];
