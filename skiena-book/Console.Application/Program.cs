@@ -1,26 +1,4 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using skiena.book.graph;
-using skiena.book.kruskal;
-using skiena.book.prim;
+using Hackerrank.machine.MST;
 
-
-Graph g = GraphCommand.Create(new string[]
-            {
-                "1 3 12",
-                "3 5 7",
-                "5 6 2",
-                "6 7 5",
-                "7 2 7",
-                "2 1 5",
-                "1 4 7",
-                "4 5 3",
-                "4 7 4",
-                "5 7 2",
-                "2 4 9",
-                "4 3 4"
-            }, 7, true);
-
-            Kruskals p = new();
-
-            var actual = p.AlgoRun(g);
-            System.Console.WriteLine(actual);
+System.Console.WriteLine("helllo");
