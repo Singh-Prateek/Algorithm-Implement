@@ -19,7 +19,7 @@ public class Prims
     }
 
 
-    public int PrimsAlgo(Graph g, int start)
+    public int AlgoRun(Graph g, int start)
     {
         int weight = 0;
         int dist = int.MaxValue;
@@ -101,7 +101,7 @@ public class PrimsRunner
 
         Prims p = new(7);
 
-        return p.PrimsAlgo(g, 7);
+        return p.AlgoRun(g, 7);
     }
 }
 

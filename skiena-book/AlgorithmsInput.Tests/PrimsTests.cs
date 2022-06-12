@@ -31,7 +31,7 @@ namespace AlgorithmsInput
 
             Prims p = new(7);
 
-            var actual = p.PrimsAlgo(g, 7);
+            var actual = p.AlgoRun(g, 7);
 
             Assert.Equal(23, actual);
 
