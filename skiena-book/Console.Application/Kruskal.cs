@@ -13,30 +13,30 @@ public class Kruskals
 {
     public int AlgoRun(Graph g)
     {
-
-        int i = 0;
-
         int weight = 0;
 
         UnionFind s = UnionFindInit(g.VerticesCount);
 
-        List<EdgePair> e = g.EdgeNodes.Skip(1)
-                                .SelectMany((s, idx) => s.Select(e => MapToEdgePair(idx, e)))
-                                .OrderBy(e => e.Weight)
-                                .ToList();
-        e.Insert(0 , new EdgePair());
+        IEnumerable<EdgePair> edges = g.EdgeNodes
+                                .SelectMany(FlatMapToEdgePair)
+                                .OrderBy(e => e.Weight);
 
-        for (i = 1; i <= g.VerticesCount; i++)
+        foreach (var e in edges)
         {
-            if (!SameComponent(s, e[i].X, e[i].Y))
+            if (!SameComponent(s, e.X, e.Y))
             {
-                System.Console.WriteLine($"edge {e[i].X}-{e[i].Y} in MST");
-                weight += e[i].Weight;
-                UnionSets(s, e[i].X, e[i].Y);
+                //System.Console.WriteLine($"edge {e.X}-{e.Y} in MST");
+                weight += e.Weight;
+                UnionSets(s, e.X, e.Y);
             }
         }
 
         return weight;
+    }
+
+    private static IEnumerable<EdgePair> FlatMapToEdgePair(List<EdgeNode> s, int idx)
+    {
+        return s?.Select(e => MapToEdgePair(idx, e)) ?? new List<EdgePair>();
     }
 
     private static EdgePair MapToEdgePair(int idx, EdgeNode e) =>
@@ -60,13 +60,13 @@ public class Kruskals
         return result;
     }
 
-    private int Find(UnionFind s, int node)
+    private int Find(UnionFind s, int x)
     {
-        if (s.p[node] == node)
+        if (s.p[x] == x)
         {
-            return node;
+            return x;
         }
-        return Find(s, s.p[node]);
+        return Find(s, s.p[x]);
     }
 
     private void UnionSets(UnionFind s, int s1, int s2)
