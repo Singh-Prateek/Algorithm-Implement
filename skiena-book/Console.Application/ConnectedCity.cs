@@ -42,9 +42,10 @@ class Result
     public static long roadsAndLibraries(int n, int c_lib, int c_road, List<List<int>> cities)
     {
         UnionFind s = new UnionFind(n, c_lib, c_road);
+
         Console.WriteLine("new value {0}, l:{1}-r:{2}", n, s.libraryCost, s.roadCost);
 
-        long result = Convert.ToInt64(n)*Convert.ToInt64(c_lib); //disjoin set, so all cities has library
+        long result = Convert.ToInt64(n) * Convert.ToInt64(c_lib); //disjoin set, so all cities has library
 
         foreach (var e in cities)
         {
@@ -55,7 +56,7 @@ class Result
             }
         }
 
-        return Convert.ToInt64(result);
+        return result;
     }
 
     private static bool SameComponent(UnionFind s, int s1, int s2)
