@@ -1,32 +1,61 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
-System.Console.WriteLine(TwoSum(new int[] { 2, 3, 4 }, 6));
-System.Console.WriteLine(TwoSum(new int[] { -3, 3, 4 }, 0));
-
-// O(n) time as only one loop and lookup us O(1)
-//space complexity O(n)
-int[] TwoSum(int[] nums, int target)
+internal class TwoSums
 {
-    Dictionary<int, int> map = new Dictionary<int, int>();
 
-    for (int i = 0; i < nums.Length; i++)
+    // O(n) time as only one loop and lookup us O(1)
+    //space complexity O(n)
+    internal static int[] TwoSum(int[] nums, int target)
     {
-        if (map.ContainsKey(nums[i]))
+        Dictionary<int, int> map = new Dictionary<int, int>();
+
+        for (int i = 0; i < nums.Length; i++)
         {
-            return new int[] { map[nums[i]], i };
+            if (map.ContainsKey(nums[i]))
+            {
+                return new int[] { map[nums[i]], i };
+            }
+            else
+            {
+                if (!map.ContainsKey(target - nums[i]))
+                    map.Add(target - nums[i], i);
+            }
         }
-        else
-        {
-            if (!map.ContainsKey(target - nums[i]))
-                map.Add(target - nums[i], i);
-        }
+
+        return Array.Empty<int>();
     }
 
-    return 0;
-}
+    //space complexity will be O(2) and
+    //time complexity will O(nLogn) + O(n) = nlogn 
+    internal static int[] TwoSumMakingNumber(int[] nums, int target)
+    {
+        int[] sorted = nums.OrderBy(o => o).ToArray();
 
-// int[] TwoSum2(int[] nums, int target)
-// {
-//     int sorted = nums.
-// }
+        int[] result = new int[] { 0, nums.Length - 1 };
+
+        int temp = 0;
+
+        for (int i = 0; i < sorted.Length; i++)
+        {
+            temp = sorted[result[0]] + sorted[result[1]];
+
+            if (temp < target)
+            {
+                result[0] += 1;
+            }
+            else if (temp > target)
+            {
+                result[1] -= 1;
+            }
+            else
+            {
+                break;
+            }
+
+        }
+
+        return new int[] { sorted[result[0]], sorted[result[1]] };
+    }
+}
