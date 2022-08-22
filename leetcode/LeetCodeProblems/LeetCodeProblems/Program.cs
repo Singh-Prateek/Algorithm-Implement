@@ -7,9 +7,11 @@ Console.WriteLine("Hello, World!");
 
 //var result = ThreeSumProblem.ThreeSum(new int[] { -1, 0, 1, 2, -1, -4 });
 //var result = ThreeSumProblem.ThreeSum(new int[] { -1, 0, 1, 2, -1, -4, -2, -3, 3, 0, 4 });
-var result = ThreeSumProblem.ThreeSum2(new int[] { -5, 0, -2, 3, -2, 1, 1, 3, 0, -5, 3, 3, 0, -1 });
-var result2 = ThreeSumProblem.ThreeSum(new int[] { -5, 0, -2, 3, -2, 1, 1, 3, 0, -5, 3, 3, 0, -1 });
+var result = MergedSortedArray.FindMedianSortedArrays(
+    new int[] { 1, 1, 1 },
+    new int[] { 1, 1, 1 }
+    );
 
 
-Console.WriteLine(String.Join(" | ", result.Select(s => "[" + string.Join(",", s) + "]")));
-Console.WriteLine(String.Join(" | ", result2.Select(s => "[" + string.Join(",", s) + "]")));
+Console.WriteLine(result);
+//Console.WriteLine(String.Join(" | ", result.Select(s => "[" + string.Join(",", s) + "]")));
