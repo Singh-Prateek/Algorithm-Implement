@@ -5,8 +5,6 @@ using static LeetCodeProblems.ValidParentheses;
 
 Console.WriteLine("Hello, World!");
 
-Console.WriteLine(IsValid("]"));
-Console.WriteLine(IsValid("()"));
-Console.WriteLine(IsValid("([{}])"));
-Console.WriteLine(IsValid("[}"));
+Console.WriteLine(LongestValidParentheses(")()"));
+
 

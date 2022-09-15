@@ -37,12 +37,46 @@ internal class ValidParentheses
                 }
                 else
                 {
-                    stack.Push(c);
+                    return false;
                 }
             }
         }
 
         return stack.Count == 0;
+    }
+
+    internal static int LongestValidParentheses(string s)
+    {
+
+        Stack<int> stack = new Stack<int>();
+
+        stack.Push(-1);
+
+        int maxLen = 0;
+
+        for (int i = 0; i < s.Length; i++)
+        {
+            char c = s[i];
+
+            if (c == '(')
+            {
+                stack.Push(i);
+            }
+            else
+            {
+                stack.Pop();
+
+                if (!stack.Any())
+                {
+                    stack.Push(i);
+                }
+
+                maxLen = Math.Max(maxLen, i - stack.Peek());
+            }
+        }
+
+        return maxLen;
+
     }
 }
 
