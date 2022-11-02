@@ -9,7 +9,7 @@ internal class TwoSums
     //space complexity O(n)
     internal static int[] TwoSum(int[] nums, int target)
     {
-        Dictionary<int, int> map = new Dictionary<int, int>();
+        Dictionary<int, int> map = new Dictionary<int, int>(nums.Length);
 
         for (int i = 0; i < nums.Length; i++)
         {
