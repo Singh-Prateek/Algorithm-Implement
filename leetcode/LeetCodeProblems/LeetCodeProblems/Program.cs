@@ -5,7 +5,9 @@ using static LeetCodeProblems.ValidParentheses;
 
 Console.WriteLine("Hello, World!");
 
-Console.WriteLine(LongestSubString.LengthOfLongestSubstring("abcabcbb"));
+var op = MaxSubArrayKadane.MaxSubarray(new int[] { -2, 1, -3, 4, -1, 2, 1, -5, 4 });
+
+Console.WriteLine(op.Item1);
 
 Console.ReadKey();
 
