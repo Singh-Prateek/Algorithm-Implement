@@ -15,13 +15,13 @@ public class RotatedSortedArray
 
     private static void RunWithMessages(RotatedSortedArray runner, string s)
     {
-        Console.WriteLine("1 - source : {0}\tmin :{1}", s, runner.FindMin(GetIntArray(s)));
-        Console.WriteLine("2 - source : {0}\tmin :{1}", s, runner.FindMin2(GetIntArray(s)));
+        Console.WriteLine("1 - source : {0}\tmin :{1}", s, runner.FindMinRecursion(GetIntArray(s)));
+        Console.WriteLine("2 - source : {0}\tmin :{1}", s, FindMinIteration(GetIntArray(s)));
     }
 
     private static int[] GetIntArray(string nums) => nums.Split(',').Select(Int32.Parse).ToArray();
 
-    public int FindMin(int[] nums)
+    public int FindMinRecursion(int[] nums)
     {
         int idx = Search(nums, 0, nums.Length - 1);
 
@@ -38,39 +38,30 @@ public class RotatedSortedArray
     private int Search(int[] nums, int start, int end)
     {
 
-        int lIdx = 0;
-        int rIdx = 0;
+        if (end - start == 1) return end;
 
-        int middle = (start + end + 1) / 2;
+        int middle = (start + end) / 2;
 
         if (middle > start && nums[middle] < nums[start])
         {
-            if (middle - start == 1)
-            {
-                return middle;
-            }
-            lIdx = Search(nums, start, middle);
+            return Search(nums, start, middle);
         }
 
         if (end > middle && nums[middle] > nums[end])
         {
-            if (end - middle == 1)
-            {
-                return end;
-            }
-            rIdx = Search(nums, middle, end);
+            return Search(nums, middle, end);
         }
 
-        return Math.Max(lIdx, rIdx);
+        return 0;
 
     }
 
     /// <summary>
-    /// optimized code.
+    /// iteration loop.
     /// </summary>
     /// <param name="nums"></param>
     /// <returns></returns>
-    private int FindMin2(int[] nums)
+    private static int FindMinIteration(int[] nums)
     {
         int start = 0;
         int end = nums.Length - 1;
@@ -95,4 +86,3 @@ public class RotatedSortedArray
     }
 
 }
-

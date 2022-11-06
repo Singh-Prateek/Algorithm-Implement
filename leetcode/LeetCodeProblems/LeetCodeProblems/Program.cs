@@ -5,7 +5,7 @@ using static LeetCodeProblems.ValidParentheses;
 
 Console.WriteLine("Hello, World!");
 
-ReverseIntegerOrder.Run();
+RotatedSortedArray.Run();
 
 Console.ReadKey();
 
