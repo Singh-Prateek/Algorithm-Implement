@@ -14,7 +14,7 @@ continous and ordered sub elemens
 
 ## pattern and target
     P : Pattern
-    T : Target
+    T : Text
     S : Source
 
 ## Algorithm

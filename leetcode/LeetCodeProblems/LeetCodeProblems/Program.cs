@@ -7,7 +7,7 @@ Console.WriteLine("Hello, World!");
 
 RotatedSortedArray.Run();
 
-Console.ReadKey();
+//Console.ReadKey();
 
 
 

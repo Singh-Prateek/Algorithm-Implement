@@ -7,16 +7,24 @@ public class RotatedSortedArray
     {
         RotatedSortedArray obj = new RotatedSortedArray();
 
-        RunWithMessages(obj, "3,4,5,6,1,2");
+        RunWithMessages(obj, "5,1,2,3,4");
+        RunWithMessages(obj, "3,4,5,1,2");
+        RunWithMessages(obj, "1,2,3,4,5");
+        RunWithMessages(obj, "2,3,4,5,1");
+        RunWithMessages(obj, "6,1,2,3,4,5");
         RunWithMessages(obj, "1,2,4,5,6,7,0");
-        RunWithMessages(obj, "11,12,32,43");
+        RunWithMessages(obj, "11,12,43");
+        RunWithMessages(obj, "11,12");
         RunWithMessages(obj, "222222,111111");
     }
 
     private static void RunWithMessages(RotatedSortedArray runner, string s)
     {
-        Console.WriteLine("1 - source : {0}\tmin :{1}", s, runner.FindMinRecursion(GetIntArray(s)));
-        Console.WriteLine("2 - source : {0}\tmin :{1}", s, FindMinIteration(GetIntArray(s)));
+        int index = 0;
+        Console.WriteLine("{0} - source : {1}\tmin :{2}", ++index, s, FindMinInArray(GetIntArray(s)));
+        Console.WriteLine("{0} - source : {1}\tmin :{2}", ++index, s, runner.FindMinRecursion(GetIntArray(s)));
+        Console.WriteLine("{0} - source : {1}\tmax :{2}", ++index, s, FindMaxInArray(GetIntArray(s)));
+        Console.WriteLine("");
     }
 
     private static int[] GetIntArray(string nums) => nums.Split(',').Select(Int32.Parse).ToArray();
@@ -37,22 +45,18 @@ public class RotatedSortedArray
     /// <returns></returns>
     private int Search(int[] nums, int start, int end)
     {
-
-        if (end - start == 1) return end;
+        if (end <= start) return start;
 
         int middle = (start + end) / 2;
 
-        if (middle > start && nums[middle] < nums[start])
+        if (nums[middle] > nums[end])
+        {
+            return Search(nums, middle + 1, end);
+        }
+        else
         {
             return Search(nums, start, middle);
         }
-
-        if (end > middle && nums[middle] > nums[end])
-        {
-            return Search(nums, middle, end);
-        }
-
-        return 0;
 
     }
 
@@ -61,28 +65,53 @@ public class RotatedSortedArray
     /// </summary>
     /// <param name="nums"></param>
     /// <returns></returns>
-    private static int FindMinIteration(int[] nums)
+    private static int FindMaxInArray(int[] nums)
     {
         int start = 0;
         int end = nums.Length - 1;
+        int middle;
 
         while (start < end)
         {
-            if (nums[start] < nums[end]) return nums[start];
+            middle = (start + end + 1) / 2;
 
-            int middle = (start + end) / 2;
-
-            if (nums[middle] >= nums[start])
+            if (nums[start] > nums[middle])
             {
-                start = middle + 1;
+                end = middle - 1;
             }
             else
             {
-                end = middle;
+                start = middle;
             }
         }
 
+        //Console.WriteLine("min idx:{0}", (start + 1) % nums.Length);
+
         return nums[start];
+    }
+
+    private static int FindMinInArray(int[] nums)
+    {
+        int l = 0;
+        int r = nums.Length - 1;
+        int m = 0;
+
+        while (l < r)
+        {
+            m = (l + r) / 2;
+
+            if (nums[m] > nums[r])
+            {
+                l = m + 1;
+            }
+            else
+            {
+                r = m;
+            }
+        }
+
+        //Console.WriteLine("max idx:{0}", (l + nums.Length - 1) % nums.Length);
+        return nums[l];
     }
 
 }
