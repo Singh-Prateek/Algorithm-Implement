@@ -3,4 +3,4 @@ using skiena.book.combinationsearch;
 
 Console.WriteLine("helllo");
 
-Console.WriteLine((new StringCompare()).AlgoRun());
+(new Backtracking()).AlgoRun();

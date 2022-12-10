@@ -2,38 +2,67 @@
 
 public class MaxProfitProblem
 {
-    public static void Run(int[] prices)
+    public static void Run()
     {
-        var pricesStr = string.Join(',',prices);
-        Console.WriteLine("1-source:{0} \tmax: {1}",pricesStr, MaxProfit(prices));
-        Console.WriteLine("2-source:{0} \tmax: {1}",pricesStr ,MaxProfitTwo(prices));
+        Runner("7,1,9");
+        Runner("7,1,4,2,3");
+        Runner("7,1,4,2,3,9");
+        Runner("7,4,3,2");
+
+    }
+    static void Runner(string prices)
+    {
+
+        var pricesArray = prices.Split(',').Select(int.Parse).ToArray();
+        var idxs = MaxProfit(pricesArray);
+        Console.WriteLine("source:{0}\tbuy: {1}\t sell: {2}\tmaxValue: {3}",
+            prices,
+            idxs.b, idxs.s, idxs.max);
     }
 
-    static int MaxProfit(int[] prices)
+    /// <summary>
+    /// two pointer: left looks for buy and right for sell
+    /// if there is a minimum value, reset buy pointer.
+    /// </summary>
+    /// <param name="prices"></param>
+    /// <returns></returns>
+    static (int b, int s, int max) MaxProfit(int[] prices)
     {
-        int mP = 0;
-        int rP = 0;
+        int maxProfit = 0;
+        int currentProfit = 0;
 
-        int mbIdx = 0;
+        int buyPtr = 0;
+        int sellPtr = 0;
 
         for (int i = 1; i < prices.Length; i++)
         {
-
-            rP = prices[i] - prices[mbIdx];
-
-            if (prices[i] < prices[mbIdx])
+            if (prices[i] < prices[buyPtr])
             {
-                mbIdx = i;
+                buyPtr = i;
             }
 
-            mP = Math.Max(mP, rP);
+            currentProfit = prices[i] - prices[buyPtr];
+
+            if (maxProfit < currentProfit)
+            {
+                sellPtr = i;
+                maxProfit = currentProfit;
+            }
 
         }
 
-        return mP;
+        return (buyPtr, maxProfit == 0 ? -1 : sellPtr, maxProfit);
 
     }
 
+
+    /// <summary>
+    /// could lead to multiple buy and sell.
+    /// It maximize profit but did not convined myself it is a good solution.
+    /// as question specify only one transaction.
+    /// </summary>
+    /// <param name="prices"></param>
+    /// <returns></returns>
     static int MaxProfitTwo(int[] prices)
     {
         int mP = 0;
