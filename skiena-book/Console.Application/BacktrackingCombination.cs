@@ -3,14 +3,14 @@ using System.Linq;
 
 namespace skiena.book.combinationsearch;
 
-public class Backtracking
+public class BacktrackingCombination
 {
     internal record Data(char[] Options, int MaxSetSize);
 
 
     public void AlgoRun()
     {
-        var input = new Data(new char[] { 'a', 'b', 'c' }, 3);
+        var input = new Data(new char[] { 'a', 'b', 'c', 'd', 'e' }, 3);
         var a = new int[input.MaxSetSize + 1];
         Array.Fill(a, 0);
         Backtrack(input, 0, a);
@@ -85,7 +85,6 @@ public class Backtracking
             {
                 Console.Write(input.Options[i - 1]);
             }
-
         }
 
         Console.Write("} ");
@@ -96,3 +95,4 @@ public class Backtracking
         return k == n.MaxSetSize;
     }
 }
+

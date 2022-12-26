@@ -39,9 +39,9 @@ class Result
      *  4. 2D_INTEGER_ARRAY cities
      */
 
-    public static long roadsAndLibraries(int n, int c_lib, int c_road, List<List<int>> cities)
+    public static long RoadsAndLibraries(int n, int c_lib, int c_road, List<List<int>> cities)
     {
-        UnionFind s = new UnionFind(n, c_lib, c_road);
+        UnionFind s = new (n, c_lib, c_road);
 
         Console.WriteLine("new value {0}, l:{1}-r:{2}", n, s.libraryCost, s.roadCost);
 
@@ -52,7 +52,7 @@ class Result
             if (JoinSets(s, e[0], e[1]))
             {
                 Console.WriteLine($"{e[0]}-{e[1]}");
-                result = result + (c_road - c_lib);
+                result += (c_road - c_lib);
             }
         }
 

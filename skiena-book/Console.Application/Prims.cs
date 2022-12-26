@@ -4,10 +4,9 @@ namespace skiena.book.prim;
 
 public class Prims
 {
-
-    int[] distance = Array.Empty<int>();
-    int[] parent = Array.Empty<int>();
-    bool[] inTree = Array.Empty<bool>();
+    readonly int[] distance = Array.Empty<int>();
+    readonly int[] parent = Array.Empty<int>();
+    readonly bool[] inTree = Array.Empty<bool>();
 
     public Prims(int verticesCount)
     {
