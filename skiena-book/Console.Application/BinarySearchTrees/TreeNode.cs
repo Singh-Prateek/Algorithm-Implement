@@ -1,5 +1,5 @@
 ﻿using System;
-namespace skiena.book.Graphs;
+namespace skiena.book.BinarySearchTrees;
 
 public class TreeNode
 {
