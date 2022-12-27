@@ -13,7 +13,7 @@ public static class TreeOperations
     {
         var z = new TreeNode(value);
 
-        var x = tree.Parent;
+        var x = tree.Root();
 
         TreeNode? y = null;
 
@@ -35,7 +35,7 @@ public static class TreeOperations
 
         if (y == null)
         {
-            tree.Parent = z;
+            tree.SetRoot(value);
         }
         else if (z.Key < y.Key)
         {
@@ -102,11 +102,6 @@ public static class TreeOperations
     }
 
 
-    /// <summary>
-    /// unable to replace the root.
-    /// </summary>
-    /// <param name="t"></param>
-    /// <param name="z"></param>
     public static void DeleteNode(this TreeNode t, TreeNode z)
     {
         if (z.Left == null) Transplant(t, z, z.Right);
@@ -136,7 +131,10 @@ public static class TreeOperations
     {
         if (u.Parent == null)
         {
-            u.Parent = v;
+            if (v != null)
+            {
+                t.SetRoot(v.Key);
+            }
         }
         else if (u == u.Parent.Left)
         {
@@ -151,6 +149,14 @@ public static class TreeOperations
         {
             v.Parent = u.Parent;
         }
+    }
+
+    public static TreeNode Root(this TreeNode t)
+    {
+        if (t.Parent != null) return t.Parent.Root();
+
+        return t;
+
     }
 }
 

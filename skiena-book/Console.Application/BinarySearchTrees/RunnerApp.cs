@@ -3,28 +3,38 @@ namespace skiena.book.BinarySearchTrees;
 
 public static class RunnerApp
 {
-    public static TreeNode CreateSampleTree()
+    public static TreeNode CreateTree(int[] inputs)
     {
-        TreeNode t = new(6)
+        TreeNode t = new TreeNode(inputs[0]);
+
+        for (int i = 1; i < inputs.Length; i++)
         {
-            Parent = new TreeNode(15)
-            {
-                Right = new TreeNode(18)
-            }
-        };
-
-        t.Parent.Left = t;
-        t.Parent.Right.Parent = t.Parent;
-
-
-        var inputs = new int[] { 7, 3, 2, 4, 17, 20, 19, 31 };
-
-        foreach (var e in inputs)
-        {
-            t.AddNode(e);
+            t.AddNode(inputs[i]);
         }
 
-        return t.Parent;
+        return t;
+    }
+
+    public static TreeNode CreateTreeFromSortedArray(int[] inputs)
+    {
+        int m = inputs.Length / 2;
+
+        TreeNode t = new TreeNode(inputs[m]);
+
+        if (m > 0)
+        {
+            t.Left = CreateTreeFromSortedArray(inputs[0..m]);
+            t.Left.Parent = t;
+        }
+
+        if (m + 1 < inputs.Length)
+        {
+            t.Right = CreateTreeFromSortedArray(inputs[(m + 1)..^0]);
+            t.Right.Parent = t;
+        }
+
+
+        return t;
     }
 
     public static void Delete(TreeNode node, int keyValue)
@@ -34,5 +44,7 @@ public static class RunnerApp
         if (z != null)
             node.DeleteNode(z);
     }
+
+    public static TreeNode CreateSampleTree() => CreateTree(new int[] { 15, 6, 7, 3, 2, 4, 18, 17, 20, 19, 31 });
 }
 
